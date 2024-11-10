@@ -1,3 +1,7 @@
+# this is used to measure zsh performance
+# uncomment to enable, also uncomment the zprof at the end of the file
+# zmodload zsh/zprof
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -6,23 +10,23 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 
+# TODO fix this to be portable
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+
+zstyle ':omz:plugins:nvm' lazy yes
+plugins=(git nvm zsh-syntax-highlighting zsh-history-substring-search zsh-completions)
+source .plugins
+
+
+
 
 
 # git submodule add --depth=1 https://github.com/lukechilds/zsh-nvm.git zsh-nvm
 
 
-
-
-
-# enable plugins
-export NVM_LAZY_LOAD=true
-source zsh-nvm/zsh-nvm.plugin.zsh
-source syntax-highlighting/zsh-syntax-highlighting.zsh
-source history-search/zsh-history-substring-search.zsh
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
-source completions/zsh-completions.plugin.zsh
-fpath=(./completions/src $fpath)
 
 
 
@@ -30,8 +34,18 @@ fpath=(./completions/src $fpath)
 
 
 
-# TODO fix this to be portable
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+
+compinit
+
+
+autoload -Uz compinit
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+compinit -C
+
+
 
 POWERLEVEL9K_CONFIG_FILE=~/.dotfiles/.p10k.zsh
 source powerlevel10k/powerlevel10k.zsh-theme
@@ -56,3 +70,6 @@ source .p10k.zsh
 
 # source aliases file
 # source .aliases
+
+
+# zprof
