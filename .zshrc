@@ -10,23 +10,30 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
+
 # TODO fix this to be portable
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 
 zstyle ':omz:plugins:nvm' lazy yes
-plugins=(git nvm zsh-syntax-highlighting zsh-history-substring-search zsh-completions)
+plugins=(git nvm zsh-syntax-highlighting zsh-history-substring-search zsh-completions zsh-autosuggestions)
 source .plugins
-
-
-
-
-
-# git submodule add --depth=1 https://github.com/lukechilds/zsh-nvm.git zsh-nvm
-
 
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+
+
+
+
+
+# git submodule add --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git
+
+
+
 
 
 
