@@ -1,10 +1,10 @@
 for plugin in $plugins; do 
   # check if the plugin is directly installed first
-  if  [ -f $plugin/$plugin.plugin.zsh ]; then
-    source $plugin/$plugin.plugin.zsh 
+  if  [ -f ~/.dotfiles/$plugin/$plugin.plugin.zsh ]; then
+    source ~/.dotfiles/$plugin/$plugin.plugin.zsh 
   # check if the plugin is in the ohmyzsh plugins directory second
-  elif [ -f ohmyzsh/plugins/$plugin/$plugin.plugin.zsh ]; then
-    source ohmyzsh/plugins/$plugin/$plugin.plugin.zsh
+  elif [ -f ~/.dotfiles/ohmyzsh/plugins/$plugin/$plugin.plugin.zsh ]; then
+    source ~/.dotfiles/ohmyzsh/plugins/$plugin/$plugin.plugin.zsh
   else
     echo "Plugin $plugin not found"
   fi
