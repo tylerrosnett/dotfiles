@@ -1,6 +1,10 @@
 # this is used to measure zsh performance
-# uncomment to enable, also uncomment the zprof at the end of the file
-# zmodload zsh/zprof
+# Run this to use 
+# zshperformance
+if [[ -n "$ZSH_DEBUGRC" ]]; then
+  zmodload zsh/zprof
+fi
+
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -9,33 +13,29 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
-setopt appendhistory
+setopt appendhistory                                     # Enable history
+setopt extendedhistory                                   # Timestamps in history
+setopt incappendhistory                                  # Write history immediately
+setopt histfindnodups                                    # Skip duplicates in history
 
-# history search
-autoload -U history-search-end
-zle -N history-beginning-search-backward-end history-search-end
-zle -N history-beginning-search-forward-end history-search-end
-bindkey "^[[A" history-beginning-search-backward-end
-bindkey "^[[B" history-beginning-search-forward-end
 
 # TODO fix this to be portable
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 source .aliases
-source <(fzf --zsh)
-
 
 zstyle ':omz:plugins:nvm' lazy yes
-#removed zsh-history-substring-search zsh-completions  zsh-autosuggestions
-plugins=(git aws kubectl nvm zsh-syntax-highlighting)
+plugins=(git git-open aws kubectl fluxcd argocd nvm zsh-autosuggestions zsh-syntax-highlighting history-substring-search)
 source .plugins
 
+bindkey "$terminfo[kcuu1]" history-search-backward
+bindkey "$terminfo[kcud1]" history-search-forward
 
 # TODO fix this nonsense
+autoload -Uz compinit                                    # Enable completions
 compinit
 # autoload -Uz compinit
 # for dump in ~/.zcompdump(N.mh+24); do
@@ -50,4 +50,6 @@ source powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f .p10k.zsh ]] && p10k configure
 source .p10k.zsh
 
-# zprof
+if [[ -n "$ZSH_DEBUGRC" ]]; then
+  zprof
+fi

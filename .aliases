@@ -8,3 +8,7 @@ alias s='git status'
 alias c='git commit -m'
 alias p='git push'
 alias pull='git pull'
+alias kctx='kubectx'
+alias kns='kubens'
+
+alias zshperformance='time ZSH_DEBUGRC=1 zsh -i -c exit'
