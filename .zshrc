@@ -1,5 +1,5 @@
 # this is used to measure zsh performance
-# Run this to use 
+# To use, run this command: 
 # zshperformance
 if [[ -n "$ZSH_DEBUGRC" ]]; then
   zmodload zsh/zprof
@@ -16,11 +16,7 @@ fi
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
-setopt appendhistory                                     # Enable history
-setopt extendedhistory                                   # Timestamps in history
-setopt incappendhistory                                  # Write history immediately
-setopt histfindnodups                                    # Skip duplicates in history
-
+setopt appendhistory
 
 # TODO fix this to be portable
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
@@ -37,13 +33,6 @@ bindkey "$terminfo[kcud1]" history-search-forward
 # TODO fix this nonsense
 autoload -Uz compinit                                    # Enable completions
 compinit
-# autoload -Uz compinit
-# for dump in ~/.zcompdump(N.mh+24); do
-#   compinit
-# done
-# compinit -C
-
-
 
 POWERLEVEL9K_CONFIG_FILE=~/.dotfiles/.p10k.zsh
 source powerlevel10k/powerlevel10k.zsh-theme
