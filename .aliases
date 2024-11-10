@@ -1,0 +1,15 @@
+[[ -f ~/.aliases ]] && source ~/.aliases
+source ./kube-aliases/kube-aliases.plugin.zsh
+
+alias ls='lsd'
+alias ll='lsd -l'
+
+alias tf='tofu'
+
+alias g='git'
+alias s='git status'
+alias a='git add .'
+alias c='git commit -m'
+alias p='git push'
+alias pull='git pull'
+

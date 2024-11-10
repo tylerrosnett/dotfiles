@@ -1,0 +1,18 @@
+[submodule "powerlevel10k"]
+	path = powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git
+[submodule "syntax-highlighting"]
+	path = syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "history-search"]
+	path = history-search
+	url = https://github.com/zsh-users/zsh-history-substring-search
+[submodule "completions"]
+	path = completions
+	url = https://github.com/zsh-users/zsh-completions.git
+[submodule "zsh-nvm"]
+	path = zsh-nvm
+	url = https://github.com/lukechilds/zsh-nvm.git
+[submodule "omz-plugins"]
+	path = omz-plugins
+	url = https://github.com/ohmyzsh/ohmyzsh.git
