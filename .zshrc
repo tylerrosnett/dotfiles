@@ -1,6 +1,5 @@
 # this is used to measure zsh performance
-# To use, run this command: 
-# zshperformance
+# To use, run this command: zshperformance
 if [[ -n "$ZSH_DEBUGRC" ]]; then
   zmodload zsh/zprof
 fi
@@ -17,19 +16,23 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
 
+autoload -Uz compinit
+compinit
+
 # TODO fix this to be portable
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 source ~/.dotfiles/.aliases
+[[ ! -f ~/.secrets ]] || source ~/.secrets 
 
 zstyle ':omz:plugins:nvm' lazy yes
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-plugins=(git git-ope kubectl fluxcd argocd nvm zsh-autosuggestions zsh-syntax-highlighting history-substring-search)
+plugins=(git git-open kubectl fluxcd argocd nvm zsh-autosuggestions zsh-syntax-highlighting history-substring-search)
 source ~/.dotfiles/.plugins
 
-# Set up key bindings for history search
-bindkey "$terminfo[kcuu1]" history-search-backward
-bindkey "$terminfo[kcud1]" history-search-forward
+# Set up key bindings for cycling through history with arrow keys
+bindkey '^[[A' history-search-backward  # Up arrow
+bindkey '^[[B' history-search-forward   # Down arrow
 
 # only run full compinit if the dump file is older than 24 hours
 autoload -Uz compinit
