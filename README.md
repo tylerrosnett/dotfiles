@@ -33,6 +33,19 @@ git clone --recurse-submodules https://github.com/tylerrosnett/dotfiles ~/.dotfi
 - **oh-my-zsh plugins** + **powerlevel10k** + **zsh-autosuggestions** + **zsh-syntax-highlighting** (submodules)
 - **Custom aliases** — git, kubectl, and utility shortcuts
 
+## Performance
+
+Startup is profiled with zprof — run `zshperformance` (aliased in `.aliases`):
+
+```text
+🦋 time zsh -i -c exit
+zsh -i -c exit  0.04s user 0.03s system 85% cpu 0.074 total
+```
+
+~74ms cold start as of 2026-06, with p10k instant prompt hiding most of it.
+
+Things that keep it fast: p10k instant prompt, cached compinit, omz used as a plugin library only (no framework load), nvm lazy-loaded on first use.
+
 ## License
 
 MIT

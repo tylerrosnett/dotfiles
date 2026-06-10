@@ -90,4 +90,7 @@ fi
 log "Applying macOS defaults"
 "$DOTFILES/macos-defaults.sh"
 
+# Silence "Last login" banner in new terminals
+touch "$HOME/.hushlogin"
+
 log "Done. Restart your terminal."

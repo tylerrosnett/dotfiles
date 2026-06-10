@@ -38,7 +38,7 @@ compinit -C
 
 zstyle ':omz:plugins:nvm' lazy yes
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-plugins=(git git-open kubectl fluxcd argocd nvm zsh-autosuggestions zsh-syntax-highlighting history-substring-search)
+plugins=(git git-open kubectl nvm zsh-autosuggestions zsh-syntax-highlighting history-substring-search)
 source ~/.dotfiles/.plugins
 
 # Arrow keys: substring history search (both escape-sequence variants)
