@@ -1,0 +1,8 @@
+# Ghostty — symlinked to ~/.config/ghostty/config by setup.sh (mac + linux)
+
+theme = catppuccin-mocha.conf
+font-family = MesloLGS NF
+font-size = 16
+quit-after-last-window-closed = true
+# temp for macos icon theme matching fix
+auto-update-channel = tip
