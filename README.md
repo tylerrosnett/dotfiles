@@ -1,26 +1,37 @@
 # dotfiles
 
-Personal zsh configuration with oh-my-zsh, powerlevel10k, and shell aliases.
+Personal shell + tooling setup for macOS (Apple Silicon).
 
 ## Setup
 
-1. Clone the repo:
-   ```bash
-   git clone --recurse-submodules https://github.com/tylerrosnett/dotfiles ~/.dotfiles
-   ```
+```bash
+git clone --recurse-submodules https://github.com/tylerrosnett/dotfiles ~/.dotfiles
+~/.dotfiles/setup.sh
+```
 
-2. Symlink the config:
-   ```bash
-   ln -s ~/.dotfiles/.zshrc ~/.zshrc
-   ```
+`setup.sh` is idempotent — safe to re-run anytime. It:
+
+- installs Homebrew if missing, then `brew bundle` (Brewfile — CLI tools, apps, fonts)
+- syncs git submodules (powerlevel10k, omz plugins, etc.)
+- symlinks `.zshrc` and the `ghostty/` dir (config + themes) (backs up non-symlink originals to `*.bak`)
+- installs a default Python via uv
+- installs kubectl krew plugins (neat, view-secret, tree)
+- applies macOS defaults (`macos-defaults.sh`)
+
+## Layout
+
+| File | Purpose |
+|---|---|
+| `Brewfile` | all packages — `brew bundle --file=~/.dotfiles/Brewfile` |
+| `setup.sh` | bootstrap script (above) |
+| `macos-defaults.sh` | macOS `defaults write` settings |
+| `ghostty/config` | terminal: MesloLGS NF, catppuccin-mocha |
+| `.zshrc` / `.aliases` / `.plugins` / `.p10k.zsh` | zsh config |
 
 ## Includes
 
-- **oh-my-zsh** — Framework for zsh configuration
-- **powerlevel10k** — Fast, feature-rich zsh theme
-- **zsh-autosuggestions** — Fish-like autosuggestions
-- **zsh-syntax-highlighting** — Syntax highlighting in zsh
-- **Custom aliases** — Git, kubectl, and utility shortcuts
+- **oh-my-zsh plugins** + **powerlevel10k** + **zsh-autosuggestions** + **zsh-syntax-highlighting** (submodules)
+- **Custom aliases** — git, kubectl, and utility shortcuts
 
 ## License
 

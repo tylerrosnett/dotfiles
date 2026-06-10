@@ -5,8 +5,6 @@ if [[ -n "$ZSH_DEBUGRC" ]]; then
 fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -16,30 +14,42 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
 
-autoload -Uz compinit
-compinit
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# TODO fix this to be portable
-# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# brew zsh completions (kubectl, helm, gh, ...) — must be set before compinit
+fpath=("$HOMEBREW_PREFIX/share/zsh/site-functions" $fpath)
+
+# kubectl krew plugins
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+# uv-installed tools
+export PATH="$HOME/.local/bin:$PATH"
 
 source ~/.dotfiles/.aliases
-[[ ! -f ~/.secrets ]] || source ~/.secrets 
+[[ ! -f ~/.secrets ]] || source ~/.secrets
+
+# compinit BEFORE plugins (they call compdef); full rebuild only if dump >24h old
+autoload -Uz compinit
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+compinit -C
 
 zstyle ':omz:plugins:nvm' lazy yes
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 plugins=(git git-open kubectl fluxcd argocd nvm zsh-autosuggestions zsh-syntax-highlighting history-substring-search)
 source ~/.dotfiles/.plugins
 
-# Set up key bindings for cycling through history with arrow keys
-bindkey '^[[A' history-search-backward  # Up arrow
-bindkey '^[[B' history-search-forward   # Down arrow
+# Arrow keys: substring history search (both escape-sequence variants)
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
-# only run full compinit if the dump file is older than 24 hours
-autoload -Uz compinit
-for dump in ~/.zcompdump(N.mh+24); do
-  compinit
-done
-compinit -C
+# direnv
+command -v direnv >/dev/null && eval "$(direnv hook zsh)"
+
+# fzf keybindings (Ctrl-R history, Ctrl-T files)
+command -v fzf >/dev/null && source <(fzf --zsh)
 
 POWERLEVEL9K_CONFIG_FILE=~/.dotfiles/.p10k.zsh
 source ~/.dotfiles/powerlevel10k/powerlevel10k.zsh-theme

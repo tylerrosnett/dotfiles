@@ -1,0 +1,15 @@
+anthropic.claude-code
+catppuccin.catppuccin-vsc
+catppuccin.catppuccin-vsc-icons
+eamodio.gitlens
+esbenp.prettier-vscode
+golang.go
+hashicorp.terraform
+janisdd.vscode-edit-csv
+k--kato.intellij-idea-keybindings
+luke-zhang-04.processing-vscode
+mechatroner.rainbow-csv
+ms-azuretools.vscode-containers
+ms-azuretools.vscode-docker
+shd101wyy.markdown-preview-enhanced
+yzhang.markdown-all-in-one
