@@ -38,6 +38,7 @@ link() { # link <repo-relative-src> <dest>
 link .zshrc "$HOME/.zshrc"
 link .gitconfig "$HOME/.gitconfig"
 link ghostty "${XDG_CONFIG_HOME:-$HOME/.config}/ghostty"
+link k9s "${XDG_CONFIG_HOME:-$HOME/.config}/k9s"
 
 # --- SSH signing key (used by .gitconfig: commit.gpgsign with ssh format) ---
 if [[ ! -f "$HOME/.ssh/id_ed25519" ]]; then
@@ -76,6 +77,11 @@ fi
 if command -v uv >/dev/null 2>&1; then
   log "Installing default Python (uv)"
   uv python install   # latest stable; no-op if already installed
+fi
+
+# --- K9s config validation ---
+if command -v k9s >/dev/null 2>&1; then
+  mkdir -p "${XDG_DATA_HOME:-$HOME/.local/share}/k9s"
 fi
 
 # --- kubectl krew plugins ---

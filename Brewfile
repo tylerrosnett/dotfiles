@@ -29,6 +29,7 @@ brew "kustomize"
 brew "krew"             # kubectl plugin manager
 brew "kubeconform"      # manifest validation
 brew "dive"             # container image inspection
+brew "int128/kubelogin/kubelogin"  # kubectl OIDC auth (kubelogin/oidc-login)
 
 # --- GitOps / IaC ---
 brew "fluxcd/tap/flux"
@@ -42,6 +43,12 @@ brew "govc"             # vSphere CLI (govmomi)
 brew "go"
 brew "nvm"              # Node Version Manager; also manages npm versions
 brew "uv"               # python package/project manager; also manages python versions
+brew "powershell"       # pwsh shell
+
+# --- Networking & media ---
+brew "nmap"             # network/port scanner
+brew "ffmpeg"           # audio/video transcoding
+brew "pandoc"           # document conversion
 
 # --- Apps & fonts ---
 cask "ghostty"
@@ -49,7 +56,11 @@ cask "visual-studio-code"
 cask "firefox"
 cask "rectangle"                 # window management
 cask "scroll-reverser"           # reverse trackpad vs mouse-wheel scrolling
+cask "raycast"                   # launcher / productivity
 cask "claude"                    # Claude desktop
 cask "obsidian"
+cask "bitwarden"                 # password manager
+cask "fantastical"               # calendar
+cask "obs"                       # screen recording / streaming
 cask "zoom"
 cask "font-meslo-lg-nerd-font"   # MesloLGS NF — required by powerlevel10k

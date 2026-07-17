@@ -1,0 +1,32 @@
+k9s:
+  liveViewAutoRefresh: false
+  ui:
+    skin: dotfiles
+    enableMouse: true
+    headless: false
+    logoless: true
+    crumbsless: false
+    reactive: true
+    noIcons: false
+  skipLatestRevCheck: true
+  maxConnRetry: 5
+  readOnly: false
+  logger:
+    tail: 300
+    buffer: 5000
+    sinceSeconds: -1
+    textWrap: false
+    showTime: true
+  shellPod:
+    image: busybox:1.36
+    namespace: default
+    limits:
+      cpu: 100m
+      memory: 100Mi
+  thresholds:
+    cpu:
+      warn: 70
+      danger: 90
+    memory:
+      warn: 70
+      danger: 90

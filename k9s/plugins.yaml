@@ -1,0 +1,27 @@
+plugins:
+  view-secret:
+    shortCut: Shift-V
+    confirm: false
+    description: Decode secret with kubectl-view-secret
+    scopes:
+      - secrets
+    command: kubectl
+    background: false
+    args:
+      - view-secret
+      - -n
+      - $NAMESPACE
+      - $NAME
+
+  tree:
+    shortCut: Shift-T
+    confirm: false
+    description: Show namespace resource tree
+    scopes:
+      - all
+    command: kubectl
+    background: false
+    args:
+      - tree
+      - -n
+      - $NAMESPACE

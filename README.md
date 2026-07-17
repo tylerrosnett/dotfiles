@@ -13,7 +13,7 @@ git clone --recurse-submodules https://github.com/tylerrosnett/dotfiles ~/.dotfi
 
 - installs Homebrew if missing, then `brew bundle` (Brewfile — CLI tools, apps, fonts)
 - syncs git submodules (powerlevel10k, omz plugins, etc.)
-- symlinks `.zshrc` and the `ghostty/` dir (config + themes) (backs up non-symlink originals to `*.bak`)
+- symlinks `.zshrc`, `ghostty/`, and `k9s/` into `~/.config` (backs up non-symlink originals to `*.bak`)
 - installs a default Python via uv
 - installs kubectl krew plugins (neat, view-secret, tree)
 - applies macOS defaults (`macos-defaults.sh`)
@@ -26,6 +26,7 @@ git clone --recurse-submodules https://github.com/tylerrosnett/dotfiles ~/.dotfi
 | `setup.sh` | bootstrap script (above) |
 | `macos-defaults.sh` | macOS `defaults write` settings |
 | `ghostty/config` | terminal: MesloLGS NF, catppuccin-mocha |
+| `k9s/` | K9s config (`config.yaml`, `hotkeys.yaml`, `plugins.yaml`, custom skin) |
 | `.zshrc` / `.aliases` / `.plugins` / `.p10k.zsh` | zsh config |
 
 ## Includes

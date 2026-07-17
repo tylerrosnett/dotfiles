@@ -14,6 +14,9 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
 
+# Allow comments in interactive shells.
+setopt interactive_comments
+
 # Homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
@@ -25,6 +28,9 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # uv-installed tools
 export PATH="$HOME/.local/bin:$PATH"
+
+# VCF CLI Essentials plugin version
+export VCF_CLI_ESSENTIALS_PLUGIN_GROUP_VERSION=v9.1.0
 
 source ~/.dotfiles/.aliases
 [[ ! -f ~/.secrets ]] || source ~/.secrets
@@ -50,6 +56,23 @@ command -v direnv >/dev/null && eval "$(direnv hook zsh)"
 
 # fzf keybindings (Ctrl-R history, Ctrl-T files)
 command -v fzf >/dev/null && source <(fzf --zsh)
+
+# Tab accepts the autosuggestion if one is showing, else normal completion.
+# Must come AFTER fzf, which rebinds ^I to fzf-completion; this takes ^I back
+# unconditionally and delegates the no-suggestion case to fzf-completion so
+# **<tab> completion still works (with plain completion as its fallback).
+fzf_default_completion=expand-or-complete
+_tab_accept_or_complete() {
+  if [[ -n "$POSTDISPLAY" ]]; then
+    zle autosuggest-accept
+  elif zle -l fzf-completion; then
+    zle fzf-completion
+  else
+    zle expand-or-complete
+  fi
+}
+zle -N _tab_accept_or_complete
+bindkey '^I' _tab_accept_or_complete
 
 POWERLEVEL9K_CONFIG_FILE=~/.dotfiles/.p10k.zsh
 source ~/.dotfiles/powerlevel10k/powerlevel10k.zsh-theme

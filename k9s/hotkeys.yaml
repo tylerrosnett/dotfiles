@@ -1,0 +1,17 @@
+hotKeys:
+  shift-0:
+    shortCut: Shift-0
+    description: View all namespaces
+    command: all
+  shift-p:
+    shortCut: Shift-P
+    description: View pods
+    command: pods
+  shift-e:
+    shortCut: Shift-E
+    description: View events
+    command: events
+  shift-x:
+    shortCut: Shift-X
+    description: XRay pods
+    command: xray pods

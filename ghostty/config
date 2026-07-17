@@ -4,5 +4,6 @@ theme = catppuccin-mocha.conf
 font-family = MesloLGS NF
 font-size = 16
 quit-after-last-window-closed = true
+clipboard-paste-protection = false
 # temp for macos icon theme matching fix
 auto-update-channel = tip

@@ -139,5 +139,9 @@
   "chat.viewSessions.orientation": "stacked",
   "gitlens.ai.model": "vscode",
   "gitlens.ai.vscode.model": "copilot:claude-sonnet-4.6",
-  "chat.mcp.gallery.enabled": true
+  "chat.mcp.gallery.enabled": true,
+  "go.toolsManagement.autoUpdate": true,
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
